@@ -22,6 +22,10 @@ namespace Supermercado
             BirthDay1 = birthDay;
             Nacionality1 = nacionality;
         }
+        public Person()
+        {
+
+        }
 
         public string Name1 { get => Name; set => Name = value; }
         public string LastName1 { get => LastName; set => LastName = value; }

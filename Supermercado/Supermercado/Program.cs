@@ -106,7 +106,7 @@ namespace Supermercado
                     {
                         Console.WriteLine("Please enter your rut");
                         string rut = Console.ReadLine();
-                        Client cli;
+                        Client cli = new Client();
                         foreach (Client c1 in clients)
                         {
                             if (c1.Rut1 == rut)
@@ -152,6 +152,85 @@ namespace Supermercado
 
                 else if (menu == "4") // Upgrade
                 {
+                    Console.WriteLine("Enter the person rut");
+                    string rut = Console.ReadLine();
+                    Console.WriteLine("This person is an Employee or Service?");
+                    string cla = Console.ReadLine();
+                    if (cla == "Employee")
+                    {
+                        Employee per = new Employee();
+                        foreach (Employee e in employee)
+                        {
+                            if (e.Rut1 == rut)
+                            {
+                                per = e;
+                            }
+                        }
+                        Console.WriteLine("You want to change the Position, Hours or Salary?");
+                        string change = Console.ReadLine();
+                        if (change == "Position")
+                        {
+                            Console.WriteLine("The position of this person is {0}", per.Position1);
+                            Console.WriteLine("Enter the new Position: Boss, Supervisor or Cashier");
+                            string position = Console.ReadLine();
+                            per.ChangePosition(position);
+                        }
+                        else if (change == "Hours")
+                        {
+                            Console.WriteLine("The hours per week of this person is {0}", per.Hours1);
+                            Console.WriteLine("Enter the change of hours (if you want less hours enter -#)");
+                            int hours = Int32.Parse(Console.ReadLine());
+                            per.EChangeHours(hours);
+                        }
+                        else if (change == "Salary")
+                        {
+                            Console.WriteLine("The salary of this person is {0}", per.Salary1);
+                            Console.WriteLine("Enter the change of salary (if you want less salary enter -#)");
+                            int salary = Int32.Parse(Console.ReadLine());
+                            per.EChangeSalary(salary);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Enter a valid option");
+                        }
+
+                    }
+                    else if (cla == "Service")
+                    {
+                        Service per = new Service();
+                        foreach (Service s in service)
+                        {
+                            if (s.Rut1 == rut)
+                            {
+                                per = s;
+                            }
+                        }
+                        Console.WriteLine("You want to change the Hours or Salary?");
+                        string change = Console.ReadLine();
+                        if (change == "Hours")
+                        {
+                            Console.WriteLine("The hours per week of this person is {0}", per.Hours1);
+                            Console.WriteLine("Enter the change of hours (if you want less hours enter -#)");
+                            int hours = Int32.Parse(Console.ReadLine());
+                            per.SChangeHours(hours);
+                        }
+                        else if (change == "Salary")
+                        {
+                            Console.WriteLine("The salary of this person is {0}", per.Salary1);
+                            Console.WriteLine("Enter the change of salary (if you want less salary enter -#)");
+                            int salary = Int32.Parse(Console.ReadLine());
+                            per.SChangeSalary(salary);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Enter a valid option");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Enter a valid option");
+                    }
+
                     n = 1;
                 }
 

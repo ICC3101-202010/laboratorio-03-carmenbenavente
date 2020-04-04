@@ -11,6 +11,15 @@ namespace Supermercado
         public Client(string name, string lastName, string rut, string birthDay, string nacionality) : base(name, lastName, rut, birthDay, nacionality)
         {
         }
+
+        public Client() : base()
+        {
+            Name1 = null;
+            LastName1 = null;
+            Rut1 = null;
+            BirthDay1 = null;
+            Nacionality1 = null;
+        }
         List<string> Cart = new List<string>();
         public void AddtoCart(Products p, int n)
         {
