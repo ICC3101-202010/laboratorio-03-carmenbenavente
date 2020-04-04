@@ -23,9 +23,9 @@ namespace Supermercado
         List<string> Cart = new List<string>();
         public void AddtoCart(Products p, int n)
         {
-            if (p.Stock1 != 0)
+            if (p.Stock1 > 0)
             {
-                if (p.Stock1 > n)
+                if (p.Stock1 >= n)
                 {
                     int v = p.Stock1 - n;
                     p.Stock1 = v;
@@ -48,14 +48,14 @@ namespace Supermercado
 
         public string MakeReciept(List<Employee> list)
         {
-            string reciept;
+            string reciept = null;
             string v = "\n";
             string cli = "Client:";
             string cas = "Cashier:";
             string car = "All products:";
 
-            reciept = cli + this.Show() + v;
-
+            reciept += cli + v + this.Show() + v;
+                
             List<Employee> Cashiers = new List<Employee>();
             foreach (Employee em in list)
             {
@@ -67,7 +67,7 @@ namespace Supermercado
             var random = new Random();
             int index = random.Next(Cashiers.Count);
             Employee cashier = Cashiers[index];
-            reciept = cas + cashier.Show() + v;
+            reciept += cas + v + cashier.Show() + v;
 
             DateTime dateTime = DateTime.Now;
             reciept += dateTime + v;
