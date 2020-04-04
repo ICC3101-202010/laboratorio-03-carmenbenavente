@@ -54,7 +54,7 @@ namespace Supermercado
             string cas = "Cashier:";
             string car = "All products:";
 
-            reciept = cli + Show() + v;
+            reciept = cli + this.Show() + v;
 
             List<Employee> Cashiers = new List<Employee>();
             foreach (Employee em in list)
