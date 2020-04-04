@@ -10,43 +10,55 @@ namespace Supermercado
     {
         static void Main(string[] args)
         {
+            List<Client> clients = new List<Client>();
+            List<Products> products = new List<Products>();
+            List<Employee> employee = new List<Employee>();
+            List<Service> service = new List<Service>();
+            List<string> recipts = new List<string>();
+
             Console.WriteLine("Welcome to the supermarket");
             int n = 1;
             while (n == 1)
             {
-                Console.WriteLine("Select an option: \n 1.Add a new person \n 2. Add a new product  \n 3. Shop \n 4. Upgrade the job of someone \n 5. See all reciepts  \n 9. Get out");
+                Console.WriteLine("Select an option: \n 1.Add a new person \n 2. Add a new product  \n 3. Shop \n 4. Change the job of someone \n 5. See all reciepts \n 6. Seeall the people  \n 9. Get out");
                 string menu = Console.ReadLine();
                 if (menu == "1") //Add new person
                 {
                     string name, lastName, rut, birthDay, nacionality, position;
                     int salary, hours;
-                    Console.WriteLine("Name");
+                    Console.WriteLine("Enter de person´s Name");
                     name = Console.ReadLine();
-                    Console.WriteLine("Last Name");
+                    Console.WriteLine("Enter de person´s Last Name");
                     lastName = Console.ReadLine();
-                    Console.WriteLine("Rut");
+                    Console.WriteLine("Enter de person´s Rut");
                     rut = Console.ReadLine();
-                    Console.WriteLine("Birth Day (dd,mm,yyyy)");
+                    Console.WriteLine("Enter de person´s Birth Day (dd,mm,yyyy)");
                     birthDay = Console.ReadLine();
-                    Console.WriteLine("Nationality");
+                    Console.WriteLine("Enter de person´s Nationality");
                     nacionality = Console.ReadLine();
-                    Console.WriteLine("Please select a possition: \n 1. Client \n 2. Boss \n 3. Supervisor \n 4. Cashier \n 5. Guard \n 6. Cleaning ");
+                    Console.WriteLine("Please select a possition: \n Client \n Boss \n Supervisor \n Cashier \n Guard \n Cleaning");
                     position = Console.ReadLine();
                     Console.WriteLine("Please enter the salary");
                     salary = Int32.Parse(Console.ReadLine());
                     Console.WriteLine("Please enter the amount of hours a week");
                     hours = Int32.Parse(Console.ReadLine());
-                    if (position == "1")
+                    if (position == "Client")
                     {
-                        Person person = new Person(name, lastName, rut, birthDay, nacionality);
+                        Client person = new Client(name, lastName, rut, birthDay, nacionality);
+                        clients.Add(person);
+                        Console.WriteLine(person.Show()); 
                     }
-                    else if (position == "2" ^ position == "3" ^ position == "4")
+                    else if (position == "Boss" ^ position == "Supervisor" ^ position == "Cashier")
                     {
                         Employee person = new Employee(name, lastName, rut, birthDay, nacionality, position, salary, hours);
+                        employee.Add(person);
+                        Console.WriteLine(person.Show());
                     }
-                    else if (position == "5" ^ position == "6")
+                    else if (position == "Guard" ^ position == "Cleaning")
                     {
                         Service person = new Service(name, lastName, rut, birthDay, nacionality, position, salary, hours);
+                        service.Add(person);
+                        Console.WriteLine(person.Show());
                     }
                     else
                     {
@@ -66,10 +78,75 @@ namespace Supermercado
                     price = Int32.Parse(Console.ReadLine());
                     Console.WriteLine("Please enter the stock");
                     stock = Int32.Parse(Console.ReadLine());
+                    Products product = new Products(thing, brand, price, stock);
+                    products.Add(product);
+                    product.InfoProduct();
                     n = 1;
                 }
                 else if (menu == "3") // Shop
                 {
+                    Console.WriteLine("You want to enter as Supervisor (add stock of a product) or Client (buy products)");
+                    string j = Console.ReadLine();
+                    if (j == "Supervisor")
+                    {
+                        Console.WriteLine("Enter the product that you want to add stock of");
+                        string p = Console.ReadLine();
+                        Console.WriteLine("Enter the amount you want to add");
+                        int num = Int32.Parse(Console.ReadLine());
+                        foreach (Products p1 in products)
+                        {
+                            if (p1.Thing1 == p)
+                            {
+                                p1.AddStock(num);
+                            }
+                        }
+                        
+                    }
+                    else if (j == "Client")
+                    {
+                        Console.WriteLine("Please enter your rut");
+                        string rut = Console.ReadLine();
+                        Client cli;
+                        foreach (Client c1 in clients)
+                        {
+                            if (c1.Rut1 == rut)
+                            {
+                                cli = c1;
+                            }
+                        }
+                        Console.WriteLine("This are the products aveilable");
+                        foreach (Products p2 in products)
+                        {
+                            Console.WriteLine(p2.Thing1);
+                        }
+                        int m = 1;
+                        while( m == 1)
+                        {
+                            Console.WriteLine("Please enter a product");
+                            string thing = Console.ReadLine();
+                            Console.WriteLine("Please enter the amount of product that you want to add to your cart");
+                            int cant = Int32.Parse(Console.ReadLine());
+                            foreach (Products p3 in products)
+                            {
+                                if (p3.Thing1 == thing)
+                                {
+                                    cli.AddtoCart(p3, cant);
+                                }
+                            }
+                            Console.WriteLine("Do you want to continue shopping? 1.Yes, 0. No");
+                            m = Int32.Parse(Console.ReadLine());
+                        }
+                        recipts.Add(cli.MakeReciept(employee));
+                        Console.WriteLine(cli.MakeReciept(employee));
+                        
+                        
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please enter a valid anwser");
+                    }
+                    
                     n = 1;
                 }
 
@@ -80,6 +157,32 @@ namespace Supermercado
 
                 else if (menu == "5") // All reciepts
                 {
+                    foreach (String r in recipts)
+                    {
+                        Console.WriteLine(r);
+                    }
+                    n = 1;
+                }
+                
+                else if (menu == "6") // All people
+                {
+                    Console.WriteLine("Employee");
+                    foreach (Employee e in employee)
+                    {
+                        Console.WriteLine(e.Show());
+                    }
+                    
+                    Console.WriteLine("Service");
+                    foreach (Service s in service)
+                    {
+                        Console.WriteLine(s.Show());
+                    }
+                    
+                    Console.WriteLine("Client");
+                    foreach (Client c in clients)
+                    {
+                        Console.WriteLine(c.Show());
+                    }
                     n = 1;
                 }
 

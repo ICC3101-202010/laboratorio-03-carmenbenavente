@@ -8,7 +8,7 @@ namespace Supermercado
 {
     public class Service : Person
     { 
-        private string Position; // guard, cleanning
+        private string Position; // Guard, Cleanning
         private int Salary;
         private int Hours;
 

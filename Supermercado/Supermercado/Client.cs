@@ -37,19 +37,39 @@ namespace Supermercado
             }
         }
 
-        public void MakeReciept()
+        public string MakeReciept(List<Employee> list)
         {
-            // info client
-            Show();
-            //ramdom cashier
-            
-            // date and time
-           
-            // Cart 
+            string reciept;
+            string v = "\n";
+            string cli = "Client:";
+            string cas = "Cashier:";
+            string car = "All products:";
+
+            reciept = cli + Show() + v;
+
+            List<Employee> Cashiers = new List<Employee>();
+            foreach (Employee em in list)
+            {
+                if (em.Position1 == "Cashier")
+                {
+                    Cashiers.Add(em);
+                }
+            }
+            var random = new Random();
+            int index = random.Next(Cashiers.Count);
+            Employee cashier = Cashiers[index];
+            reciept = cas + cashier.Show() + v;
+
+            DateTime dateTime = DateTime.Now;
+            reciept += dateTime + v;
+
+            reciept += car + v;
             foreach (string c in Cart)
                 {
-                Console.WriteLine(c);
+                reciept += c;
+                reciept += v;
                 }
+            return reciept;
         }
     }
 }

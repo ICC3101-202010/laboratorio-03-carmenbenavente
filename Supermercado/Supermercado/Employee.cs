@@ -8,7 +8,7 @@ namespace Supermercado
 {
     public class Employee : Person
     {
-        private string Position; // boss, supervisor, cashier
+        private string Position; // Boss, Supervisor, Cashier
         private int Salary;
         private int Hours;
 

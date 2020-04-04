@@ -29,9 +29,10 @@ namespace Supermercado
         public string BirthDay1 { get => BirthDay; set => BirthDay = value; }
         public string Nacionality1 { get => Nacionality; set => Nacionality = value; }
 
-        public void Show()
+        public string Show()
         {
-            Console.WriteLine("Name: {0} \n Last Name: {1} \n Rut: {2} \n Birthday: {3} \n Nacionality: {4} ", Name1, LastName1, Rut1, BirthDay1, Nacionality1);
+            string v = "\n";
+            return (Name1 + v + LastName1 + v + Rut1 + v + BirthDay1 + v + Nacionality1);
         }
 
     }
