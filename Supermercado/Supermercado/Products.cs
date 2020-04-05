@@ -35,12 +35,12 @@ namespace Supermercado
         public string InfoProduct()
         {
             string e = " ";
-            return (Thing + e + Brand + e + Price.ToString());
+            return (Thing + e + Brand + e + "$" + Price.ToString());
         }
         public string StockProduct()
         {
             string e = " ";
-            return (Thing + e + Brand + e + Price.ToString() + e + Stock.ToString());
+            return (Thing + e + Brand + e + "$" + Price.ToString() + e + "Stock:" + Stock.ToString());
         }
     }
 }

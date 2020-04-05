@@ -26,15 +26,15 @@ namespace Supermercado
                 {
                     string name, lastName, rut, birthDay, nacionality, position;
                     int salary, hours;
-                    Console.WriteLine("\n Enter de person´s Name");
+                    Console.WriteLine("\n Enter the person´s Name");
                     name = Console.ReadLine();
-                    Console.WriteLine("\n Enter de person´s Last Name");
+                    Console.WriteLine("\n Enter Last Name");
                     lastName = Console.ReadLine();
-                    Console.WriteLine("\n Enter de person´s Rut");
+                    Console.WriteLine("\n Enter Rut (nnnnnnnn-n)");
                     rut = Console.ReadLine();
-                    Console.WriteLine("\n Enter de person´s Birth Day (dd,mm,yyyy)");
+                    Console.WriteLine("\n Enter Birth Day (dd-mm-yyyy)");
                     birthDay = Console.ReadLine();
-                    Console.WriteLine("\n Enter de person´s Nationality");
+                    Console.WriteLine("\n Enter Nationality");
                     nacionality = Console.ReadLine();
                     Console.WriteLine("\n Please select a possition: \n Client \n Boss \n Supervisor \n Cashier \n Guard \n Cleaning");
                     position = Console.ReadLine();
@@ -143,8 +143,9 @@ namespace Supermercado
                             Console.WriteLine("\n Do you want to continue shopping? 1.Yes, 0. No");
                             m = Int32.Parse(Console.ReadLine());
                         }
-                        recipts.Add(cli.MakeReciept(employee));
-                        Console.WriteLine("\n" + cli.MakeReciept(employee));
+                        string l = cli.MakeReciept(employee);
+                        recipts.Add(l);
+                        Console.WriteLine("\n" + l);
                         
                         
 

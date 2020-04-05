@@ -46,6 +46,11 @@ namespace Supermercado
             }
         }
 
+        public void ClearCart()
+        {
+
+        }
+        
         public string MakeReciept(List<Employee> list)
         {
             string reciept = null;
@@ -78,6 +83,7 @@ namespace Supermercado
                 reciept += c;
                 reciept += v;
                 }
+            Cart.Clear();
             return reciept;
         }
     }
